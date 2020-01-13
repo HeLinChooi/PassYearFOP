@@ -1,10 +1,14 @@
 package Year2017_2;
 
+import java.util.Scanner;
+
 public class TEster {
     public static void main(String[] args) {
-        double x = Math.floor(14/5);
-        double y = Math.floor(14%5.0);
-        System.out.println("x:" + x);
-        System.out.println("y:" + y);
+        Scanner s = new Scanner(System.in);
+        String w = s.next();
+        String x = Integer.toString(s.nextInt());
+        String y = Integer.toString(s.nextInt());
+        String z = Integer.toString(s.nextInt());
+        System.out.println("Get " + w + x + y + z);
     }
 }

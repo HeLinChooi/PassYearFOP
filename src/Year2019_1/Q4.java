@@ -12,50 +12,49 @@ public class Q4 {
         int[] characters;
         try {
             Scanner s = new Scanner(new FileInputStream("myAmbition.txt"));
-        StringBuilder wholeText = new StringBuilder();
-//        StringBuilder wholeText = new StringBuilder("Living in the modern world, "
-//                + "a person really needs"
-//                + " to know what he wants to do. In order to lead "
-//                + "a meaningful and colorful life"
-//                + ", everyone needs an ambition. If one does not "
-//                + "have an ambition, he will be "
-//                + "like a ship sailing on the wide sea blindly."
-//                + " That is why I have made up my mind to become a"
-//                + " reporter since my childhood.");
-        characters = new int[26];
-        int numOfSentences = 0;
-        int numOfWords = 0;
-            while(s.hasNextLine()){
+            StringBuilder wholeText = new StringBuilder();
+            characters = new int[26];
+            int numOfSentences = 0;
+            int numOfWords = 0;
+            while (s.hasNextLine()) {
                 wholeText.append(s.nextLine());
             }
-        String y = new String(wholeText);
-        String sentences = y.toUpperCase();
-//        System.out.println(sentences);
-        for (int i = 0; i < sentences.length(); i++) {
-            if(sentences.charAt(i)=='.'||sentences.charAt(i)==','){
-                if(sentences.charAt(i)=='.'){
-                    numOfSentences++;
+            String y = new String(wholeText);
+            String sentences = y.toUpperCase();
+            String[] words = sentences.split("\\b");
+            System.out.println("Number of words : " + words.length);
+            System.out.println(words[1]);
+            System.out.println(words[2]);
+            System.out.println(words[3]);
+            System.out.println(words[4]);
+            System.out.println(words[5]);
+            System.out.println(words[6]);
+            System.out.println(words[7]);
+            for (int i = 0; i < sentences.length(); i++) {
+                if (sentences.charAt(i) == '.' || sentences.charAt(i) == ',') {
+                    if (sentences.charAt(i) == '.') {
+                        numOfSentences++;
+                    }
+                    i++;
+                    numOfWords++;
+                    continue;
+                } else if (Character.isLetter(sentences.charAt(i))) {
+                    int characterCode = (int) sentences.charAt(i) - 65;
+                    characters[characterCode]++;
+                } else if (sentences.charAt(i) == '-') {
+                } else {
+                    numOfWords++;
                 }
-                i++;
-                numOfWords++;
-                continue;
-            }else if(Character.isLetter(sentences.charAt(i))){
-                int characterCode = (int) sentences.charAt(i) - 65;
-                characters[characterCode]++;
-            }else if(sentences.charAt(i)== '-'){
-            }else{
-                numOfWords++;
             }
-        }
-        System.out.println("Number of sentences : " + numOfSentences);
-        System.out.println("Number of words : " + numOfWords);
-        for (int i = 0; i < 26; i++) {
-            char x = (char) (i + 65);
-            if(i%8==0 && i != 0){
-                System.out.println("");
+            System.out.println("Number of sentences : " + numOfSentences);
+            System.out.println("Number of words : " + numOfWords);
+            for (int i = 0; i < 26; i++) {
+                char x = (char) (i + 65);
+                if (i % 8 == 0 && i != 0) {
+                    System.out.println("");
+                }
+                System.out.print(x + " : " + characters[i] + " ");
             }
-            System.out.print(x + " : " + characters[i]+" ");
-        }
             s.close();
         } catch (FileNotFoundException ex) {
             System.out.println("File Not Found");
